@@ -1,0 +1,13 @@
+---
+talos_device_arch: "amd64"
+talos_install_disk: "/dev/nvme0n1"
+talos_cluster_name: "homelab"
+talos_node_ip: "192.168.20.2"
+
+talos_config_url: "http://192.168.20.1/controlplane.yaml"
+
+# generated values, will be overridden by get_version.yml and get_k8s_version.yml
+talos_version: v1.12.6
+talos_k8s_version: v1.35.3
+talos_schematic_id: ""
+talos_image_url: "factory.talos.dev/metal-installer/{{ talos_schematic_id }}:{{ talos_version }}"

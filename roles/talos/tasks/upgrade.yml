@@ -1,0 +1,11 @@
+---
+- name: Get Talos image url
+  ansible.builtin.include_tasks: get_image_url.yml
+
+- name: Execute talosctl upgrade with custom image
+  ansible.builtin.command:
+    cmd: "talosctl upgrade --image {{ talos_image_url }} --wait"
+
+- name: Wait for node to be healthy
+  ansible.builtin.command:
+    cmd: "talosctl health --wait-timeout 10m"

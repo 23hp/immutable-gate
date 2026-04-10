@@ -1,0 +1,19 @@
+---
+- name: Submit configuration to Image Factory for Schematic ID
+  ansible.builtin.uri:
+    url: https://factory.talos.dev/schematics
+    method: POST
+    status_code: 201
+    src: "extensions.yaml"
+    body_format: raw
+    headers:
+      Content-Type: "application/yaml"
+  register: schematic_res
+  retries: 3
+  delay: 5
+  until: schematic_res.status == 201
+
+- name: Extract the schematic ID
+  ansible.builtin.set_fact:
+    talos_schematic_id: "{{ schematic_res.json.id }}"
+    cacheable: true

@@ -1,0 +1,6 @@
+---
+# - name: Apply config changes
+#   ansible.builtin.command:
+#     cmd: "talosctl patch machineconfig --patch-file {{ role_path }}/files/{{ item }}"
+#   loop:
+#     - default_patch.yaml

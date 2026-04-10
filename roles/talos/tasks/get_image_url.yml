@@ -1,0 +1,10 @@
+---
+- name: Get schematic ID
+  ansible.builtin.include_tasks: get_schematic_id.yml
+
+- name: Get Talos version
+  ansible.builtin.include_tasks: get_version.yml
+
+- name: Set full target image url
+  ansible.builtin.set_fact:
+    talos_image_url: "factory.talos.dev/metal-installer/{{ talos_schematic_id }}:{{ talos_version }}"
