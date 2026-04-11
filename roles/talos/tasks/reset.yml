@@ -1,0 +1,9 @@
+---
+- name: Reset Talos Linux
+  ansible.builtin.command: >
+    talosctl reset
+    --graceful=false
+    --reboot
+    --system-labels-to-keep STATE
+    --system-labels-to-keep EPHEMERAL
+    --wipe-additional-disks=false
