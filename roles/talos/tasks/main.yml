@@ -1,0 +1,7 @@
+---
+# roles/talos/tasks/main.yml
+- name: Execute Talos tasks
+  ansible.builtin.include_tasks: "{{ task_file }}"
+  loop: "{{ talos_tasks }}"
+  loop_control:
+    loop_var: task_file

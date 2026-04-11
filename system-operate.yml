@@ -1,0 +1,16 @@
+# ansible/playbooks/system-operate.yml
+---
+- name: Setup Talos Linux
+  hosts: localhost
+  roles:
+    - talos
+  vars:
+    talos_tasks:
+      - install.yml
+    talos_install_method: "iso"
+    talos_patches: []
+    talos_device_arch: "amd64"
+    talos_install_disk: "/dev/nvme0n1"
+    talos_cluster_name: "homelab"
+    talos_node_ip: "192.168.20.2"
+    talos_config_url: "http://192.168.20.1/controlplane.yaml"

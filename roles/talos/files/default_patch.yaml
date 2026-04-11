@@ -1,3 +1,4 @@
+# Apply by default
 ---
 # Enable workers on your control plane nodes
 cluster:

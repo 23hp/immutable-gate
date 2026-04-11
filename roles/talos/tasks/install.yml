@@ -1,0 +1,92 @@
+---
+- name: Get Talos image url
+  ansible.builtin.include_tasks: get_image_url.yml
+
+- name: Get Kubernetes version
+  ansible.builtin.include_tasks: get_k8s_version.yml
+
+- name: Ensure talos config directory exists
+  ansible.builtin.file:
+    path: "{{ role_path }}/.talosctl"
+    state: directory
+    mode: '0700'
+
+- name: Generate Talos secrets
+  ansible.builtin.command: talosctl gen secrets --talos-version {{ talos_version }}
+  args:
+    creates: secrets.yaml
+    chdir: "{{ role_path }}/.talosctl"
+
+- name: Generate Talos config
+  ansible.builtin.command: >
+    talosctl gen config {{ talos_cluster_name }} https://{{ talos_node_ip }}:6443
+    --config-patch-control-plane  @{{ role_path }}/files/default_patch.yaml
+    --install-disk {{ talos_install_disk }}
+    --install-image {{ talos_image_url }}
+    --kubernetes-version {{ talos_k8s_version }}
+    --talos-version {{ talos_version }}
+    --with-secrets secrets.yaml
+    --force
+  args:
+    chdir: "{{ role_path }}/.talosctl"
+
+- name: Upload iPXE and Talos config to http server
+  when: talos_install_method == "ipxe"
+  delegate_to: router
+  block:
+    - name: Upload iPXE config
+      ansible.builtin.template:
+        src: boot.ipxe.j2
+        dest: /tmp/boot.ipxe
+        mode: '0644'
+    - name: Upload Talos config
+      ansible.builtin.copy:
+        src: "{{ role_path }}/.talosctl/controlplane.yaml"
+        dest: /tmp/controlplane.yaml
+        mode: '0644'
+    - name: Create symbolic link in Web root
+      ansible.builtin.file:
+        src: /tmp/{{ filename }}
+        dest: /www/{{ filename }}
+        state: link
+        force: true
+      loop_control:
+        loop_var: filename
+      loop:
+        - boot.ipxe
+        - controlplane.yaml
+
+- name: Apply Talos config to controlplane node
+  when: talos_install_method == "iso"
+  ansible.builtin.command: >
+    talosctl apply-config
+    --insecure
+    --nodes {{ talos_node_ip }}
+    --file controlplane.yaml
+  args:
+    chdir: "{{ role_path }}/.talosctl"
+
+- name: Config talosctl node
+  ansible.builtin.command: talosctl --talosconfig=talosconfig config node {{ talos_node_ip }}
+  args:
+    chdir: "{{ role_path }}/.talosctl"
+
+- name: Config talosctl endpoint
+  ansible.builtin.command: talosctl --talosconfig=talosconfig config endpoint {{ talos_node_ip }}
+  args:
+    chdir: "{{ role_path }}/.talosctl"
+
+- name: Copy talosconfig to ~/.talos/config
+  ansible.builtin.copy:
+    src: "{{ role_path }}/.talosctl/talosconfig"
+    dest: "{{ ansible_user_dir }}/.talos/config"
+    mode: '0600'
+
+- name: Bootstrap Talos cluster
+  ansible.builtin.command: talosctl bootstrap
+
+- name: Wait Talos node to be ready
+  ansible.builtin.command: talosctl health --wait-timeout 10m
+
+- name: Get kubeconfig
+  ansible.builtin.command: talosctl kubeconfig
