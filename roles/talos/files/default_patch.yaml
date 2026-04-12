@@ -1,5 +1,20 @@
 # Apply by default
 ---
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  maxSize: 200GiB
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-data
+volumeType: partition
+provisioning:
+  diskSelector:
+    match: disk.dev_path == '/dev/nvme0n1'
+  minSize: 1000GiB
+---
 # Enable workers on your control plane nodes
 cluster:
   allowSchedulingOnControlPlanes: true
