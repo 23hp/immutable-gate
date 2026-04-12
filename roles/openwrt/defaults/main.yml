@@ -1,0 +1,6 @@
+openwrt_ip: 192.168.20.1
+openwrt_http_url: http://{{ openwrt_ip }}
+openwrt_ipxe_url: "{{ openwrt_http_url }}/boot.ipxe"
+
+openwrt_file_src: ""
+openwrt_filename: ""

@@ -1,0 +1,27 @@
+---
+- name: Download iPXE EFI binary for x86_64
+  ansible.builtin.get_url:
+    url: https://boot.ipxe.org/x86_64-efi/ipxe.efi
+    dest: /www/ipxe.efi
+    mode: '0644'
+
+- name: config dnsmasq
+  ansible.builtin.blockinfile:
+    path: /etc/dnsmasq.conf
+    marker: "# {mark} ANSIBLE MANAGED DHCP BOOT #"
+    block: |
+      dhcp-match=set:is-ipxe,175
+      dhcp-boot=tag:!is-ipxe,ipxe.efi,,{{ openwrt_ip }}
+      dhcp-boot=tag:is-ipxe,{{ openwrt_ipxe_url }}
+
+- name: Configure DHCP
+  ansible.builtin.command: "{{ cmd }}"
+  loop_control:
+    loop_var: cmd
+  loop:
+    - uci set dhcp.@dnsmasq[0].enable_tftp='1'
+    - uci set dhcp.@dnsmasq[0].tftp_root='/www'
+    - uci commit dhcp
+    - /etc/init.d/dnsmasq restart
+
+

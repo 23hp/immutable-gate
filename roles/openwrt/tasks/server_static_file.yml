@@ -1,0 +1,15 @@
+---
+# server_static_file.yml
+- name: Upload file
+  ansible.builtin.template:
+    src: "{{ openwrt_file_src }}"
+    dest: "/tmp/{{ openwrt_filename }}"
+    mode: "0644"
+  # no_log: true
+
+- name: Create symbolic link in Web root
+  ansible.builtin.file:
+    src: /tmp/{{ openwrt_filename }}
+    dest: /www/{{ openwrt_filename }}
+    state: link
+    force: true
