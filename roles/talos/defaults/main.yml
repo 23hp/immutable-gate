@@ -13,11 +13,11 @@ talos_cluster_name: "homelab"
 talos_node_ip: "192.168.10.3"
 talos_device_arch: "amd64"
 talos_install_disk: "/dev/nvme0n1"
-talos_disk_password: "topsecret"
+talos_config_path: "/tmp/talos"
 
 # Generated values
 talos_version: v1.12.6
 talos_k8s_version: v1.35.3
 talos_installer_url: "factory.talos.dev/metal-installer/{{ talos_schematic_id }}:{{ talos_version }}"
 talos_efi_url: "https://factory.talos.dev/image/{{ schematic_res.json.id }}/{{ talos_version }}/metal-amd64-secureboot-uki.efi"
-talos_config_path: "roles/talos/.talos_config"
+talos_disk_passphrase: "topsecret"

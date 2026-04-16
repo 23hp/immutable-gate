@@ -1,0 +1,16 @@
+talos_disk_passphrase: ENC[AES256_GCM,data:ApdCQdHdUi5GnQc0Nz7ZD4ODMs15exF8ZvFmtBHt,iv:nPNrAyJaX8cDz3xo5IG0Zp1i6IVDa5TzQ6Yz7EWw0/g=,tag:LqdGAEAYb8v5dLGRyLrpkA==,type:str]
+sops:
+    age:
+        - recipient: age1flltjkl7zweut33gxdvpxkdn7hc7l0g7734wx6fsjhza2ht235msddp9yy
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBrRXAyTUNtYW84MVhMZmh4
+            YVEwbXlHcHVhNDA0eXpoc0ZqSmJJaUcxamtFCmNLanBHQ2dnQmlQcDZHTWZlSDBk
+            K08wbnZsMDVCNjVFR2kwcEQ4ZjZQUHcKLS0tIDMyM2NvSCt1R3JoR1ZxVmhDQ3lY
+            a01aMjRLd0lKTDg5cWJuZGZnMFZRRDgK8tIWxTA54KxvhQ6GFD7rbVO6IETjJ6CG
+            VrOb3CQ5D1IP6VG08WHw5JhPAmKnZh6koNgmoYEFPtbG448cwlK6BA==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2026-04-16T14:14:53Z"
+    mac: ENC[AES256_GCM,data:aCa8hUCV6CtO3we8NWiZiPWIdq6mRdoJXri+nGkXAwLcsJ7XDVvZTw5EHS2mkkdypvPxa7UxZfbigpThKcZyFXcaXu45ES0sUTunjfYz5vsHTLH+DCk8gq55R1cAk2wGiUsDZjS93f7nAIDi7/FHgzCXon13/27VsS72Jd8Ga/g=,iv:kQt2z674vPvSygGQ7EsvxPl7H/Vjv4O+q0WRiSBo+oI=,tag:LwDO0cG7KRDrOMZq8RKV9g==,type:str]
+    unencrypted_suffix: _unencrypted
+    version: 3.12.2

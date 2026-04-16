@@ -5,32 +5,30 @@
 - name: Get Kubernetes version
   ansible.builtin.include_tasks: get_k8s_version.yml
 
-- name: Set Talos config path
-  ansible.builtin.set_fact:
-    talos_config_path: "{{ role_path }}/.talos_config"
-
 - name: Ensure talos config directory exists
   ansible.builtin.file:
     path: "{{ talos_config_path }}"
     state: directory
     mode: '0700'
 
-- name: Generate default patch
-  ansible.builtin.template:
-    src: "default_patch.yaml.j2"
-    dest: "{{ talos_config_path }}/default_patch.yaml"
-    mode: "0600"
-
 - name: Generate Talos secrets
-  ansible.builtin.command: talosctl gen secrets --talos-version {{ talos_version }}
+  ansible.builtin.command:
+    talosctl gen secrets --talos-version {{ talos_version }}
   args:
-    creates: secrets.yaml
     chdir: "{{ talos_config_path }}"
+    creates: secrets.yaml
+
+- name: Generate patches
+  ansible.builtin.template:
+    src: "config_partition.yaml.j2"
+    dest: "{{ talos_config_path }}/config_partition.yaml"
+    mode: "0600"
 
 - name: Generate Talos config
   ansible.builtin.command: >
     talosctl gen config {{ talos_cluster_name }} https://{{ talos_node_ip }}:6443
-    --config-patch-control-plane  @default_patch.yaml
+    --config-patch-control-plane  @{{ role_path }}/files/config.yaml
+    --config-patch-control-plane @config_partition.yaml
     --install-disk {{ talos_install_disk }}
     --install-image {{ talos_installer_url }}
     --kubernetes-version {{ talos_k8s_version }}

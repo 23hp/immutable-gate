@@ -1,13 +1,12 @@
 ---
-# Apply by default
 apiVersion: v1alpha1
 kind: VolumeConfig
 name: STATE
 encryption:
   provider: luks2
   keys:
-    - tpm: {}
-      slot: 0
+    - slot: 0
+      tpm: {}
 ---
 apiVersion: v1alpha1
 kind: VolumeConfig
@@ -17,8 +16,8 @@ provisioning:
 encryption:
   provider: luks2
   keys:
-    - tpm: {}
-      slot: 0
+    - slot: 0
+      tpm: {}
       lockToState: true
   options:
     - no_read_workqueue
@@ -30,26 +29,16 @@ name: local-data
 volumeType: partition
 provisioning:
   diskSelector:
-    match: disk.dev_path == '/dev/nvme0n1'
+    match: disk.dev_path == '{{ talos_install_disk }}'
   minSize: 1000GiB
 encryption:
   provider: luks2
   keys:
-    - tpm: {}
-      slot: 0
+    - slot: 0
+      tpm: {}
     - slot: 1
       static:
-        passphrase: {{ talos_disk_password }}
+        passphrase: {{ talos_disk_passphrase }}
   options:
     - no_read_workqueue
     - no_write_workqueue
----
-# Enable workers on your control plane nodes
-cluster:
-  allowSchedulingOnControlPlanes: true
----
-# remove label when a load balancer such as MetalLB is used
-machine:
-  nodeLabels:
-    node.kubernetes.io/exclude-from-external-load-balancers:
-      $patch: delete

@@ -2,57 +2,39 @@
   // See https://go.microsoft.com/fwlink/?LinkId=733558
   // for the documentation about the tasks.json format
   "version": "2.0.0",
+  "options": {
+    "shell": {
+      "executable": "/bin/zsh",
+      "args": ["-l", "-i", "-c"]
+    }
+  },
+  "presentation": {
+    "echo": true,
+    "reveal": "always",
+    "focus": true,
+    "panel": "dedicated",
+    "clear": true
+  },
   "tasks": [
     {
       "label": "🔧 PXE install Preparation",
       "type": "shell",
-      "command": "ansible-playbook prepare_web_install.yml",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "clear": true
-      }
+      "command": "bws run -- ansible-playbook prepare_web_install.yml"
     },
     {
       "label": "🔧 Homelab Setup",
       "type": "shell",
-      "command": "ansible-playbook setup-homelab.yml",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "clear": true
-      },
-      "problemMatcher": []
+      "command": "bws run -- ansible-playbook setup-homelab.yml"
     },
     {
       "label": "🚀 ArgoCD Setup",
       "type": "shell",
-      "command": "ansible-playbook setup-argocd.yml",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "clear": true
-      },
-      "problemMatcher": []
+      "command": "bws run -- ansible-playbook setup-argocd.yml"
     },
     {
       "label": "🧹 Cleanup",
       "type": "shell",
-      "command": "ansible-playbook cleanup.yml",
-      "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": true,
-        "panel": "dedicated",
-        "clear": true
-      },
-      "problemMatcher": []
+      "command": "ansible-playbook cleanup.yml"
     }
   ]
 }

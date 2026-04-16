@@ -1,0 +1,10 @@
+---
+# Enable workers on the control plane nodes
+cluster:
+  allowSchedulingOnControlPlanes: true
+---
+# remove label when a load balancer such as MetalLB is used
+machine:
+  nodeLabels:
+    node.kubernetes.io/exclude-from-external-load-balancers:
+      $patch: delete

@@ -13,6 +13,8 @@ A production-grade, declarative infrastructure designed to self-heal and resist 
 - ansible
 - talosctl
 - kubectl
+- [sops](https://github.com/getsops/sops)
+- [Bitwarden Secret Manager CLI](https://github.com/bitwarden/sdk-sm)
 
 ## Initialization
 #### ansible
@@ -20,4 +22,13 @@ A production-grade, declarative infrastructure designed to self-heal and resist 
     ansible-galaxy install -r requirements.yml
     ansible-playbook operate-system.yml
     ansible-playbook setup-argocd.yml
+```
+
+### Secret Management
+```bash
+    # quickly view/change secrets
+    bws run -- sops  secrets.sops.yaml
+    # In-place encryption
+    bws run -- sops -e -i localhost.sops.yml
+
 ```
