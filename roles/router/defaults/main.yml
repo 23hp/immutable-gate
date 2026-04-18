@@ -1,5 +1,5 @@
+# IP address of the TFTP/HTTP server
+router_server_ip: "192.168.10.2"
+
 router_web_root: "/tmp/www"
 router_tftp_root: "/tmp/tftp"
-
-router_file_src: ""
-router_file_relative_path: ""

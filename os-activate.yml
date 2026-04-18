@@ -2,12 +2,11 @@
 - name: Setup Talos Linux
   hosts: localhost
   gather_facts: false
-  roles:
-    - talos
-    - argocd
-  vars:
-    talos_tasks:
-      - activate.yml
-      # - patch.yml
-    # talos_patches: []
-    repo_url: 'https://github.com/23hp/immutable-gate-apps.git'
+  tasks:
+    - name: Activate Talos
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: activate
+    - name: Install ArgoCD
+      ansible.builtin.include_role:
+        name: argocd

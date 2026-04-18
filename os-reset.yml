@@ -3,8 +3,8 @@
 - name: Reset Talos Linux to maintainance mode
   hosts: localhost
   gather_facts: false
-  roles:
-    - talos
-  vars:
-    talos_tasks:
-      - reset.yml
+  tasks:
+    - name: Include Talos reset tasks
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: reset.yml

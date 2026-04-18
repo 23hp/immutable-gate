@@ -7,5 +7,5 @@
       config boot
         option servername 'tftp_server'
         option filename 'boot.efi'
-        option serveraddress '{{ server_ip }}'
+        option serveraddress '{{ router_server_ip }}'
   notify: Restart OpenWrt Dnsmasq

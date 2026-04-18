@@ -1,19 +1,15 @@
 ---
-# Operation control
-talos_tasks:
-  - install.yaml
-  - upgrade.yaml
-  - patch.yaml
-talos_patches:
-  - network_config.yaml
-  - storage_tweak.yaml
-  - custom_auth.yaml
-
 talos_cluster_name: "immutableGate"
 talos_node_ip: "192.168.10.3"
 talos_device_arch: "amd64"
 talos_install_disk: "/dev/nvme0n1"
 talos_config_path: "/tmp/talos"
+
+# Operation control
+talos_patches:
+  - network_config.yaml
+  - storage_tweak.yaml
+  - custom_auth.yaml
 
 # Generated values
 talos_version: v1.12.6
