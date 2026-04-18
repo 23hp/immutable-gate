@@ -7,4 +7,4 @@
     - name: Include Talos reset tasks
       ansible.builtin.include_role:
         name: talos
-        tasks_from: reset.yml
+        tasks_from: reset

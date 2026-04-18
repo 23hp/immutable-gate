@@ -1,6 +1,7 @@
 ---
 talos_cluster_name: "immutableGate"
 talos_node_ip: "192.168.10.3"
+talos_interface: "enp1s0"
 talos_device_arch: "amd64"
 talos_install_disk: "/dev/nvme0n1"
 talos_config_path: "/tmp/talos"

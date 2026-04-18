@@ -32,9 +32,14 @@
       "command": "bws run -- ansible-playbook os-activate.yml"
     },
     {
+      "label": "🔧 OS Patch",
+      "type": "shell",
+      "command": "bws run -- ansible-playbook os-patch.yml"
+    },
+    {
       "label": "🚀 OS Reset",
       "type": "shell",
-      "command": "ansible-playbook os-reset.yml"
+      "command": "bws run -- ansible-playbook os-reset.yml"
     },
     {
       "label": "🚀 OS Destroy",

@@ -10,7 +10,7 @@
 
 - name: Apply config changes
   ansible.builtin.command:
-    cmd: "talosctl patch machineconfig --patch-file {{ patch_file }}"
+    cmd: "talosctl patch machineconfig --patch {{ lookup('template', patch_file) | to_yaml }}"
   args:
     chdir: "{{ role_path }}/files"
   loop_control:
