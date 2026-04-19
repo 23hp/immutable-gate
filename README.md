@@ -59,19 +59,19 @@ Since the system is immutable and lacks SSH, every single change—from a kernel
 1. **Prepare PXE envoriment:**
    ```bash
    ansible-galaxy install -r requirements.yml
-   ansible-playbook pxe-setup.yml
+   ansible-playbook 01-pxe-setup.yml
    ```
 1. **Apply the Gate:**
 Create
    ```bash
-   ansible-playbook os-activate.yml
+   ansible-playbook 02-os-activate.yml
    ```
 1. **Reset the Sandbox:**
    ```bash
    # Wipe system
-   ansible-playbook reset.yml
+   ansible-playbook 05-reset.yml
    # Or wipe system and apps data
-   ansible-playbook destroy.yml
+   ansible-playbook 05-destroy.yml
    ```
 
 ## 🔒 Security & Privacy (GDPR)

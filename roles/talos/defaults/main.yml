@@ -5,12 +5,7 @@ talos_interface: "enp1s0"
 talos_device_arch: "amd64"
 talos_install_disk: "/dev/nvme0n1"
 talos_config_path: "/tmp/talos"
-
-# Operation control
-talos_patches:
-  - network_config.yaml
-  - storage_tweak.yaml
-  - custom_auth.yaml
+talos_patch_file: ""
 
 # Generated values
 talos_version: v1.12.6

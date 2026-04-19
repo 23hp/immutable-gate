@@ -3,16 +3,9 @@
 # - name: Update Talos
 #   ansible.builtin.include_tasks: patch.yml
 #   vars:
-#     talos_patches:
-#       - network_config.yaml
-#       - storage_tweak.yaml
-#       - custom_auth.yaml
+#     talos_patch_file: default_network.yaml.j2
 
 - name: Apply config changes
   ansible.builtin.command:
-    cmd: "talosctl patch machineconfig --patch {{ lookup('template', patch_file) | to_yaml }}"
-  args:
-    chdir: "{{ role_path }}/files"
-  loop_control:
-    loop_var: patch_file
-  loop: "{{ talos_patches | default([]) }}"
+    cmd: "talosctl patch machineconfig --patch {{ lookup('template', talos_patch_file) | from_yaml | to_json | quote }}"
+

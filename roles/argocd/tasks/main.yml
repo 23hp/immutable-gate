@@ -14,4 +14,4 @@
 - name: Deploy Root Application (The "App of Apps")
   kubernetes.core.k8s:
     state: present
-    definition: "{{ lookup('template', 'root-app.j2') }}"
+    definition: "{{ lookup('template', 'root-app.yaml.j2') }}"
