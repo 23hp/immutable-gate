@@ -3,12 +3,7 @@
   hosts: localhost
   gather_facts: false
   tasks:
-    - name: Activate Talos
-      tags: [never]
+    - name: Activate Talos Linux
       ansible.builtin.include_role:
         name: talos
         tasks_from: activate
-
-    - name: Install ArgoCD
-      ansible.builtin.include_role:
-        name: argocd
