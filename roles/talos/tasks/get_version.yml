@@ -12,5 +12,5 @@
 
 - name: Extract the latest stable version
   ansible.builtin.set_fact:
-    talos_version: "{{ talos_versions_response.content | from_json | reject('search', 'alpha|beta') | list | last }}"
+    talos_version: "{{ talos_versions_response.content | from_json | reject('search', 'alpha|beta|-rc') | list | last }}"
     cacheable: true

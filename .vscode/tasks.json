@@ -44,7 +44,7 @@
     {
       "label": "🚀 OS Destroy",
       "type": "shell",
-      "command": "ansible-playbook os-destroy.yml"
+      "command": "bws run -- ansible-playbook os-destroy.yml"
     },
   ]
 }
