@@ -1,0 +1,11 @@
+---
+- name: Install Flux CD
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - fluxcd
+  # tasks:
+  #   - name: Remove Flux CD
+  #     ansible.builtin.include_role:
+  #       name: fluxcd
+  #       tasks_from: uninstall

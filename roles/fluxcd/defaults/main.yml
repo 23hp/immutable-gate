@@ -1,0 +1,5 @@
+---
+fluxcd_github_pat: ""
+fluxcd_github_user: "23hp"
+fluxcd_github_repo: "homelab-apps"
+fluxcd_github_path: "clusters/immutableGate"

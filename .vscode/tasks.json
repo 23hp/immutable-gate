@@ -36,6 +36,10 @@
       "type": "shell",
       "command": "bws run -- ansible-playbook 03-argocd-install.yml"
     },
+    {      "label": "🔧 Flux CD install",
+      "type": "shell",
+      "command": "bws run -- ansible-playbook 03-fluxcd-install.yml"
+    },
     {
       "label": "🔧 OS Patch",
       "type": "shell",

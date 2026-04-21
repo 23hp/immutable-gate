@@ -1,0 +1,16 @@
+---
+- name: Create flux-system namespace
+  kubernetes.core.k8s:
+    name: flux-system
+    kind: Namespace
+    state: present
+
+- name: Run Flux Bootstrap
+  environment:
+    GITHUB_TOKEN: "{{ fluxcd_github_pat }}"
+  ansible.builtin.command: |
+    flux bootstrap github \
+      --owner={{ fluxcd_github_user }} \
+      --repository={{ fluxcd_github_repo }} \
+      --path={{ fluxcd_github_path }} \
+      --personal
