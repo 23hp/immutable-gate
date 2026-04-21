@@ -18,6 +18,12 @@
     chdir: "{{ talos_config_path }}"
     creates: secrets.yaml
 
+- name: Encrypt secrets and backup to this repository
+  community.sops.sops_encrypt:
+    content_yaml: "{{ lookup('ansible.builtin.file', talos_config_path + '/secrets.yaml') | from_yaml }}"
+    path: "{{ role_path }}/files/secrets.sops.yaml"
+  when: lookup('ansible.builtin.env', 'SOPS_AGE_KEY') != ""
+
 - name: Generate patches
   ansible.builtin.template:
     src: "config_partition.yaml.j2"
