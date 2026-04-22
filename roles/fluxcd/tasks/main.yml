@@ -5,7 +5,7 @@
     kind: Namespace
     state: present
 
-- name: Run Flux Bootstrap
+- name: Install flux CD
   environment:
     GITHUB_TOKEN: "{{ fluxcd_github_pat }}"
   ansible.builtin.command: |
@@ -14,3 +14,20 @@
       --repository={{ fluxcd_github_repo }} \
       --path={{ fluxcd_github_path }} \
       --personal
+
+- name: Add a secret source
+  ansible.builtin.command: |
+    flux create source git immutable-gate-secret \
+    --url={{ fluxcd_secret_repository_url }} \
+    --branch=main
+
+- name: Deploy AGE key for FluxCD
+  kubernetes.core.k8s:
+    definition:
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: sops-age
+        namespace: flux-system
+      stringData:
+        age.agekey: "{{ lookup('env', 'SOPS_AGE_KEY') }}"
