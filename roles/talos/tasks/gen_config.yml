@@ -2,9 +2,6 @@
 - name: Get Talos image url
   ansible.builtin.include_tasks: get_image_urls.yml
 
-- name: Get Kubernetes version
-  ansible.builtin.include_tasks: get_k8s_version.yml
-
 - name: Ensure talos config directory exists
   ansible.builtin.file:
     path: "{{ talos_config_path }}"
@@ -37,7 +34,6 @@
     --config-patch-control-plane @config_partition.yaml
     --install-disk {{ talos_install_disk }}
     --install-image {{ talos_installer_url }}
-    --kubernetes-version {{ talos_k8s_version }}
     --talos-version {{ talos_version }}
     --with-secrets secrets.yaml
     --force

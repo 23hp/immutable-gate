@@ -1,5 +1,7 @@
 talos_disk_passphrase: ENC[AES256_GCM,data:e9EH6gOkAEGIjk6TXzLQqhlwN842VWRWLYTRTm2J,iv:Qt2vRvLj05WQ+8ZxOlsokfNwQczOsNvagE5mxaNqAak=,tag:YfYMDCkdntErXUucaMHUZA==,type:str]
 fluxcd_github_pat: ENC[AES256_GCM,data:3cPowXXOMfTAj3l8LRU+cjiOpuUhWm5/a8CpQHPfqNtBB6YXjVKVa5rrXFIynC5rEAY56urFZHCMqWVt/DajPtBxCx48P6en6SZIPB1dvQfcy1/5hAUCgCPaq6+A,iv:sskIv99DPkRMq50tYI2PCIyteEz8PVqtNmgi4jwJRAg=,tag:Bw4M4Ymqydnyo7q3PFwKag==,type:str]
+fluxcd_domain_name: ENC[AES256_GCM,data:ODxF6Fgd2Oyvtw==,iv:qOR14tewrCx/sysaw4XtXoBy17o8Td9qSo/4F0f5EmU=,tag:KF0FUsLK2V/O2DPwVTGVrw==,type:str]
+fluxcd_acme_email: ENC[AES256_GCM,data:3K9CxaA+xiTfH2nXL+IXsIUCmag/1JxvKb2HU2AwkqXT4t4VPTE=,iv:UbWEMwfCRa7I3fh6COcRJwlYL3pI3G/5ndKf38sM0HA=,tag:XZ12XQIEdsEkQxLK0/zDbw==,type:str]
 sops:
     age:
         - recipient: age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc
@@ -11,7 +13,7 @@ sops:
             ZUdJTWd0d08rYzFCbTVJRUpHZlZETVkK8lkvuaUvkqw+oiBDvPS3SDpV1G5/G+gy
             +laBSJdVHOO59esiZtEHLxg9Zu7zLgfIJsnOgTvvyprhFYgyPPVl3w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-04-20T19:59:57Z"
-    mac: ENC[AES256_GCM,data:IStXfI+726okZo4JPW64B+QY6/YvZw3bQ06qgYBhEpswUAhGHkuAtxnh5s1VIqCNJLc8AvgBLSBrhijIrs6aWixJeiyf41f/GRPqYvqkRBmIsfxt7GF138nzEBGKmhS24aRdCk4C1n6jruTELPFZfnlG7RAC2ZuQOlzf2ghOySU=,iv:e6ztjjCZPEwOPuajJXzSt6SPnvkz60syy9Q5TyZ7+d8=,tag:M6rYShM2h1x9/ExDz3GXDA==,type:str]
+    lastmodified: "2026-04-23T21:05:06Z"
+    mac: ENC[AES256_GCM,data:VWrn7O66hCzR9hbpOP0RjnZUgW3LDQpYusxl0qAVQU/hRhDpbe5+c+QC0dKeId8epM2IcOAw8J/sW3OqZfBPAneRPEXt/1QqGiOOFVimymvY5MPQezy9+02lDj1VJ27MKzFLH4twot8dcb/idyFf0+xaJNQbJiLX2vvRWX3QW2U=,iv:tOXNQHMmEw+VrrsSmY6V9JiDkAgrXMMbsHIF/X4r4t8=,tag:i96wEVTy3czOo5D6qXUlwA==,type:str]
     unencrypted_suffix: _unencrypted
     version: 3.12.2

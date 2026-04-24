@@ -15,12 +15,6 @@
       --path={{ fluxcd_github_path }} \
       --personal
 
-- name: Add a secret source
-  ansible.builtin.command: |
-    flux create source git immutable-gate-secret \
-    --url={{ fluxcd_secret_repository_url }} \
-    --branch=main
-
 - name: Deploy AGE key for FluxCD
   kubernetes.core.k8s:
     definition:
@@ -31,3 +25,16 @@
         namespace: flux-system
       stringData:
         age.agekey: "{{ lookup('env', 'SOPS_AGE_KEY') }}"
+
+- name: Deploy initial config
+  kubernetes.core.k8s:
+    state: present
+    definition:
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: init-config
+        namespace: flux-system
+      data:
+        domain_name: "{{ fluxcd_domain_name }}"
+        acme_email: "{{ fluxcd_acme_email }}"
