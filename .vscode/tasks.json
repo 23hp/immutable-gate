@@ -16,8 +16,8 @@
     "clear": true
   },
   "tasks": [
-    {
-      "label": "🔧 Prepare PXE Installtion",
+ {
+      "label": "🌐 Prepare PXE Installation",
       "type": "shell",
       "command": "ansible-playbook 01-pxe-setup.yml"
     },
@@ -27,31 +27,27 @@
       "command": "ansible-playbook 06-cleanup.yml"
     },
     {
-      "label": "🔧 OS Activation",
+      "label": "🔑 OS Activation",
       "type": "shell",
       "command": "bws run -- ansible-playbook 02-os-activate.yml"
     },
-    {
-      "label": "🔧 ArgoCD install",
-      "type": "shell",
-      "command": "bws run -- ansible-playbook 03-argocd-install.yml"
-    },
-    {      "label": "🔧 Flux CD install",
+    {      
+      "label": "🌊 Flux CD install",
       "type": "shell",
       "command": "bws run -- ansible-playbook 03-fluxcd-install.yml"
     },
     {
-      "label": "🔧 OS Patch",
+      "label": "🩹 OS Patch",
       "type": "shell",
       "command": "bws run -- ansible-playbook 04-os-patch.yml"
     },
     {
-      "label": "🚀 OS Reset",
+      "label": "🔄 OS Reset",
       "type": "shell",
       "command": "bws run -- ansible-playbook 05-os-reset.yml"
     },
     {
-      "label": "🚀 OS Destroy",
+      "label": "🧨 OS Destroy",
       "type": "shell",
       "command": "bws run -- ansible-playbook 05-os-destroy.yml"
     },
