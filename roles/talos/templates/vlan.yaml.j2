@@ -1,10 +1,10 @@
 ---
 apiVersion: v1alpha1
 kind: VLANConfig
-name: {{ talos_interface }}.20
-vlanID: 20
+name: {{ talos_interface }}.{{ talos_vlan_id }}
+vlanID: {{ talos_vlan_id }}
 vlanMode: 802.1q
 parent: {{ talos_interface }}
 up: true
 addresses:
-    - address: 192.168.20.2/24
+    - address: {{ talos_vlan_address }}
