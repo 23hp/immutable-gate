@@ -12,7 +12,7 @@ Traditional systems rely on human trust and mutable state (SSH). **ImmutableGate
 
 ## 🏗️ The Technology Stack
 * **Host OS:** [Talos Linux](https://www.talos.dev/) — An API-managed, non-SSH, immutable Linux distribution.
-* **Orchestration:** [Argo CD](https://argoproj.github.io/cd/) — Managing the "App-of-Apps" pattern for automated state convergence.
+* **Orchestration:** [Flux CD](https://fluxcd.io/) — A GitOps Toolkit for keeping Kubernetes clusters in sync with configuration sources.
 * **Provisioning:** [Ansible](https://www.ansible.com/) — Handling initial network bootstrapping and PXE orchestration.
 * **Management:** `talosctl` — The sole bridge for administrative hardware resets.
 
@@ -37,11 +37,10 @@ Since the system is immutable and lacks SSH, every single change—from a kernel
 ## 🔄 Workflow
 
 1.  **Provision:** Ansible bootstraps the bare-metal node with Talos Linux.
-2.  **Bootstrap:** The **Root Application** in Argo CD is deployed.
-3.  **Converge:** Argo CD pulls the intended state from the Git repository and configures the environment.
+2.  **Bootstrap:** The Flux **Kustomization** controller is initialized.
+3.  **Reconcile:** Flux monitors the Git repository, automatically reconciling the cluster state with the desired configuration.
 4.  **Operate:** AI or applications run within the sandbox. Logs are streamed for observation.
 5.  **Re-Initialize:** Administrator triggers a hardware reset, wiping the environment for the next cycle.
-
 ---
 
 ## 🛠️ Quick Start

@@ -1,3 +1,0 @@
----
-- name: Remove Flux CD from Kubernetes cluster
-  ansible.builtin.command: flux uninstall --namespace=flux-system --silent
