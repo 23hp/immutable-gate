@@ -1,0 +1,13 @@
+# Build A new cluster
+---
+- name: Prepare PXE environment
+  import_playbook: 01-pxe-setup.yml
+
+- name: Wipe system disk
+  import_playbook: 05-os-destroy.yml
+
+- name: Setup network
+  import_playbook: 03-os-patch.yml
+
+- name: Install Flux CD
+  import_playbook: 04-fluxcd-install.yml
