@@ -6,7 +6,7 @@
     mode: '0755'
 
 - name: Check HTTP port
-  shell: "netstat -lutnp | grep ':{{ http_server_port }} '"
+  ansible.builtin.command: "netstat -lutnp | grep ':{{ http_server_port }} '"
   register: port_result
   failed_when: false
   changed_when: false
