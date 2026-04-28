@@ -10,5 +10,6 @@
       loop:
         - default_network.yaml.j2
         - vlan.yaml.j2
+        - labels.yaml
       loop_control:
         loop_var: talos_patch_file
