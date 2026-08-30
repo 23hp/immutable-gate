@@ -11,6 +11,7 @@
     host_ip: "192.168.20.3"
     # domain_name: "immutable-gate.com"
     # acme_email: "admin@immutable-gate.com"
+    # tailscale_domain_name: "immutable-gate.tailscale.net"
   tasks:
     - name: Remove Flux CD from Kubernetes cluster
       ansible.builtin.command: flux uninstall --namespace=flux-system --silent
@@ -56,3 +57,4 @@
             domain_name: "{{ domain_name }}"
             host_ip: "{{ host_ip }}"
             acme_email: "{{ acme_email }}"
+            tailscale_domain_name: "{{ tailscale_domain_name }}"
