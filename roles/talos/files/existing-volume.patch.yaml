@@ -1,0 +1,7 @@
+# existing-volume.patch.yaml
+apiVersion: v1alpha1
+kind: ExistingVolumeConfig
+name: my-data-volume
+discovery:
+    volumeSelector: # use "talosctl get discoveredvolumes" for the exact selector
+        match: volume.partition_label == "u-my-data-volume" && volume.partition_index == 1u && volume.name == 'xfs'

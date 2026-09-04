@@ -1,0 +1,5 @@
+# existing-volume-delete.patch.yaml
+apiVersion: v1alpha1
+kind: ExistingVolumeConfig
+name: my-data-volume
+$patch: delete
