@@ -1,4 +1,4 @@
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: my-data-volume
+name: hdd-4g
 $patch: delete
