@@ -1,5 +1,5 @@
 ---
-talos_cluster_name: "immutableGate"
+talos_cluster_name: "locasl"
 talos_node_ip: "10.0.0.253"
 talos_interface: "enp1s0"
 talos_vlan_id: 20

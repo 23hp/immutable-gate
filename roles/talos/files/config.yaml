@@ -1,10 +1,20 @@
 ---
 # Enable workers on the control plane nodes
-cluster:
-  allowSchedulingOnControlPlanes: true
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+taints:
+  node-role.kubernetes.io/control-plane:
+    $patch: delete
 ---
-# remove label when a load balancer such as MetalLB is used
-machine:
-  nodeLabels:
-    node.kubernetes.io/exclude-from-external-load-balancers:
-      $patch: delete
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+  # remove label when a load balancer such as MetalLB is used
+  node.kubernetes.io/exclude-from-external-load-balancers:
+    $patch: delete
+---
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+    # needed by intel-device-plugins
+    intel.feature.node.kubernetes.io/gpu: true

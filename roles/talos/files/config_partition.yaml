@@ -3,7 +3,8 @@ kind: VolumeConfig
 name: EPHEMERAL
 provisioning:
   diskSelector:
-    match: disk.transport == 'sata' && !system_disk
+    match: disk.transport == 'sata'
+  minSize: 20GiB
   maxSize: 30GiB
 ---
 apiVersion: v1alpha1
@@ -12,5 +13,6 @@ name: longhorn
 volumeType: partition
 provisioning:
   diskSelector:
-    match: disk.transport == 'sata' && !system_disk
-  minSize: 100GiB
+    match: disk.transport == 'sata'
+  minSize: 200GiB
+  maxSize: "-20GiB"

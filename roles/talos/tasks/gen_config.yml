@@ -22,7 +22,7 @@
   when: lookup('ansible.builtin.env', 'SOPS_AGE_KEY') != ""
 
 - name: Generate patches
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: "config_partition.yaml"
     dest: "{{ talos_config_path }}/config_partition.yaml"
     mode: "0600"
