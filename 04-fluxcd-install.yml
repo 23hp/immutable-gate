@@ -5,10 +5,11 @@
   vars:
     github_user: "23hp"
     github_repo: "immutable-gate-apps"
-    github_path: "clusters/immutableGate"
+    cluster_name: "local"
+    github_path: "clusters/{{ cluster_name }}"
     # github_pat: ""
     # init-config ConfigMap for FluxCD controllers
-    host_ip: "192.168.20.3"
+    host_ip: "10.0.0.253"
     # domain_name: "immutable-gate.com"
     # acme_email: "admin@immutable-gate.com"
     # tailscale_domain_name: "immutable-gate.tailscale.net"
@@ -57,4 +58,5 @@
             domain_name: "{{ domain_name }}"
             host_ip: "{{ host_ip }}"
             acme_email: "{{ acme_email }}"
+            cluster_name: "{{ cluster_name }}"
             tailscale_domain_name: "{{ tailscale_domain_name }}"
