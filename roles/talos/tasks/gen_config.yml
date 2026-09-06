@@ -23,7 +23,7 @@
 
 - name: Generate patches
   ansible.builtin.template:
-    src: "config_partition.yaml.j2"
+    src: "config_partition.yaml"
     dest: "{{ talos_config_path }}/config_partition.yaml"
     mode: "0600"
 

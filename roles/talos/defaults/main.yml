@@ -1,16 +1,16 @@
 ---
 talos_cluster_name: "immutableGate"
-talos_node_ip: "192.168.10.3"
+talos_node_ip: "10.0.0.253"
 talos_interface: "enp1s0"
 talos_vlan_id: 20
 talos_vlan_address: 192.168.20.2/24
 talos_device_arch: "amd64"
-talos_install_disk: "/dev/nvme0n1"
+talos_install_disk: "/dev/mmcblk0"
 talos_config_path: "/tmp/talos"
 talos_patch_file: ""
 
 # Generated values
-talos_version: v1.12.6
+talos_version: v1.14.0
 talos_installer_url: "factory.talos.dev/metal-installer/{{ talos_schematic_id }}:{{ talos_version }}"
 talos_efi_url: "https://factory.talos.dev/image/{{ schematic_res.json.id }}/{{ talos_version }}/metal-amd64-secureboot-uki.efi"
 talos_disk_passphrase: "topsecret"
