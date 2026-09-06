@@ -32,7 +32,6 @@
           --owner={{ github_user }} \
           --repository={{ github_repo }} \
           --path={{ github_path }} \
-          --components-extra=source-watcher \
           --personal
 
     - name: Deploy AGE key for FluxCD
