@@ -16,6 +16,14 @@
   delay: 5
   until: schematic_res.status == 201
 
+- name: Check image validity
+  ansible.builtin.uri:
+    url: "https://factory.talos.dev/v2/metal-installer/{{ schematic_res.json.id }}/manifests/{{ talos_version }}"
+    method: HEAD
+    headers:
+      Accept: "application/vnd.docker.distribution.manifest.v2+json"
+  register: http_check
+
 - name: Set image URLs
   ansible.builtin.set_fact:
     talos_efi_url: "https://factory.talos.dev/image/{{ schematic_res.json.id }}/{{ talos_version }}/metal-amd64-secureboot-uki.efi"
