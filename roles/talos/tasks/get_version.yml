@@ -12,7 +12,5 @@
 
 - name: Extract the latest stable version
   ansible.builtin.set_fact:
-    # read https://docs.siderolabs.com/talos/v1.14/getting-started/support-matrix
-    talos_version: "1.37"
-    # talos_version: "{{ talos_versions_response.content | from_json | reject('search', 'alpha|beta|-rc') | list | last }}"
+    talos_version: "{{ talos_versions_response.content | from_json | reject('search', 'alpha|beta|-rc') | list | last }}"
     cacheable: true
