@@ -19,4 +19,6 @@
 - name: Set image URLs
   ansible.builtin.set_fact:
     talos_efi_url: "https://factory.talos.dev/image/{{ schematic_res.json.id }}/{{ talos_version }}/metal-amd64-secureboot-uki.efi"
-    talos_installer_url: "factory.talos.dev/metal-installer-secureboot/{{ schematic_res.json.id }}:{{ talos_version }}"
+    # secureboot image
+    # talos_installer_url: "factory.talos.dev/metal-installer-secureboot/{{ schematic_res.json.id }}:{{ talos_version }}"
+    talos_installer_url: "factory.talos.dev/metal-installer/{{ schematic_res.json.id }}:{{ talos_version }}"
