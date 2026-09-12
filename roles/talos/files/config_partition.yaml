@@ -9,7 +9,7 @@ provisioning:
 ---
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: longhorn
+name: data
 volumeType: partition
 provisioning:
   diskSelector:

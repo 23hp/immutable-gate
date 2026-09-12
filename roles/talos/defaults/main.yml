@@ -1,6 +1,6 @@
 ---
 talos_cluster_name: "locasl"
-talos_node_ip: "10.0.0.253"
+talos_node_ip: "10.0.20.2"
 talos_interface: "enp1s0"
 talos_vlan_id: 20
 talos_vlan_address: 192.168.20.2/24
