@@ -1,0 +1,4 @@
+# When machine only has internal network access, disable time syncing avoid time syncing errors.
+apiVersion: v1alpha1
+kind: TimeSyncConfig
+enabled: false

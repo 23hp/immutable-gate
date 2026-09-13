@@ -8,6 +8,8 @@
         name: talos
         tasks_from: patch
       loop:
-        - labels.yaml
+        # - default_network.yaml.j2
+        # - vlan.yaml.j2
+        - disable-time-syncing.yaml
       loop_control:
         loop_var: talos_patch_file
