@@ -4,7 +4,7 @@
   ansible.builtin.include_tasks: gen_config.yml
 
 - name: Wait for maintenance state
-  ansible.builtin.command: "talosctl get machinestatus --insecure -n {{ talos_node_ip }} -o jsonpath='{.spec.stage}'"
+  ansible.builtin.command: "talosctl get machinestatus --insecure -n {{ talos_endpoint }} -o jsonpath='{.spec.stage}'"
   register: talos_machinestatus
   until: talos_machinestatus.stdout == "maintenance"
   retries: 20
@@ -16,7 +16,7 @@
     talosctl apply-config \
     --insecure \
     --file controlplane.yaml \
-    --nodes {{ talos_node_ip }}
+    --nodes {{ talos_endpoint }}
   args:
     chdir: "{{ talos_config_path }}"
 
@@ -27,7 +27,7 @@
     mode: '0600'
 
 - name: Wait for kubelet to be healthy
-  ansible.builtin.shell: "talosctl service kubelet | grep -q 'HEALTH.*OK'"
+  ansible.builtin.shell: "talosctl service kubelet -n {{ talos_endpoint }} | grep -q 'HEALTH.*OK'"
   register: talos_kubelet_status
   until: talos_kubelet_status.rc == 0
   changed_when: false
@@ -37,7 +37,6 @@
 - name: Bootstrap Talos cluster
   ansible.builtin.command: "{{ item }}"
   loop:
-    - talosctl bootstrap
-    - talosctl health --wait-timeout 10m
-    - talosctl kubeconfig
-    - talosctl reboot
+    - talosctl bootstrap -n {{ talos_endpoint }}
+    - talosctl health -n {{ talos_endpoint }} --wait-timeout 10m
+    - talosctl kubeconfig -n {{ talos_endpoint }}

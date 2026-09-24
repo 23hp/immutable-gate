@@ -1,0 +1,9 @@
+---
+- name: Setup Talos Linux
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Install Talos Linux
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: activate

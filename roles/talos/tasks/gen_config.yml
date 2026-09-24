@@ -21,44 +21,29 @@
     path: "{{ role_path }}/files/secrets.sops.yaml"
   when: lookup('ansible.builtin.env', 'SOPS_AGE_KEY') != ""
 
-- name: Generate patches
-  ansible.builtin.copy:
-    src: "config_partition.yaml"
-    dest: "{{ talos_config_path }}/config_partition.yaml"
-    mode: "0600"
-
 - name: Generate Talos config
   ansible.builtin.command: >
-    talosctl gen config {{ talos_cluster_name }} https://{{ talos_node_ip }}:6443
-    --config-patch-control-plane  @{{ role_path }}/files/config.yaml
-    --config-patch-control-plane @config_partition.yaml
+    talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
+    --config-patch-control-plane @{{ role_path }}/files/partition.yaml
     --install-disk {{ talos_install_disk }}
     --install-image {{ talos_installer_url }}
     --talos-version {{ talos_version }}
+    --additional-sans {{ talos_endpoint }}
     --with-secrets secrets.yaml
+    --with-examples=false
+    --with-docs=false
     --force
   args:
     chdir: "{{ talos_config_path }}"
 
-- name: Remove all comment lines from the YAML file
-  ansible.builtin.replace:
-    path: "{{ talos_config_path }}/controlplane.yaml"
-    regexp: '^\s*#.*$'
-    replace: ''
-
-- name: Remove empty lines
-  ansible.builtin.replace:
-    path: "{{ talos_config_path }}/controlplane.yaml"
-    regexp: '\n\s*\n'
-    replace: '\n'
 
 - name: Update talosconfig
   ansible.builtin.command: >
-    talosctl --talosconfig=talosconfig config {{ config_key }} {{ talos_node_ip }}
+    talosctl --talosconfig=talosconfig config {{ config_key }} {{ talos_endpoint }}
   args:
     chdir: "{{ talos_config_path }}"
   loop_control:
     loop_var: config_key
   loop:
-    - node
+    # - node
     - endpoint

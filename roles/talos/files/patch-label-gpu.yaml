@@ -1,0 +1,6 @@
+---
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+    # needed by intel-device-plugins
+    intel.feature.node.kubernetes.io/gpu: true
