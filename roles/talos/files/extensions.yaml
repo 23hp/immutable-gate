@@ -4,6 +4,3 @@ customization:
       # intel CPU & iGPU
       - siderolabs/i915
       - siderolabs/intel-ucode
-      # Longhorn
-      - siderolabs/iscsi-tools
-      - siderolabs/util-linux-tools
