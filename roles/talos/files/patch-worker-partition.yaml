@@ -1,0 +1,16 @@
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  maxSize: 100GB
+mount:
+  disableAccessTime: true
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: local-volume
+provisioning:
+  diskSelector:
+    match: disk.transport == 'nvme'
+  minSize: 1T
+  maxSize: 2TB

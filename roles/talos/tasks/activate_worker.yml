@@ -1,0 +1,22 @@
+---
+- name: Ensure controlplane.yaml exists
+  ansible.builtin.file:
+    path: "{{ talos_config_path }}/worker.yaml"
+    mode: '0700'
+
+- name: Wait for maintenance state
+  ansible.builtin.command: "talosctl get machinestatus --insecure -n {{ talos_node_ip }} -o jsonpath='{.spec.stage}'"
+  register: talos_machinestatus
+  until: talos_machinestatus.stdout == "maintenance"
+  retries: 20
+  delay: 5
+  changed_when: false
+
+- name: Apply Talos config to controlplane node
+  ansible.builtin.command: |
+    talosctl apply-config \
+    --insecure \
+    --file worker.yaml \
+    --nodes {{ talos_node_ip }}
+  args:
+    chdir: "{{ talos_config_path }}"

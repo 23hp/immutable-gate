@@ -20,7 +20,7 @@
       talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
       --additional-sans {{ talos_endpoint }}
       --config-patch-worker @{{ role_path }}/files/patch-label-gpu.yaml
-      --config-patch-worker @{{ role_path }}/files/patch-master-partition.yaml
+      --config-patch-worker @{{ role_path }}/files/patch-worker-partition.yaml
       --config-patch-worker @{{ role_path }}/files/patch-time-server.yaml
       --config-patch-worker @patch-hostname.yamL
       --force
