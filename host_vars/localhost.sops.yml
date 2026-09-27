@@ -3,10 +3,10 @@ github_pat: ENC[AES256_GCM,data:H6kB0dPio2NKDnoImen/oUgiU3wh8iZtlIuJT5mbtBAklygU
 domain_name: ENC[AES256_GCM,data:7AGys/ec/qjXNQ==,iv:dAJs53bvCLemVd2GIPcLwZC3aKSIyqLhB5r8/q+wVfs=,tag:EQZAffq7R13gWyGZ8l4FQA==,type:str]
 acme_email: ENC[AES256_GCM,data:ot1/Eh5bPsxpyBQMiuv0a4Atcx906uo5+5vPukB9CpcixSAZcm0=,iv:3Zag3ZycgtrEyORocvDjkatrXQeNQLh77TgqxYPd5hM=,tag:mYCpSRdUs5Z5Hfs7oBzonA==,type:str]
 tailscale_domain_name: ENC[AES256_GCM,data:/HL97m0d9Wgh21BRQoUQxJ4=,iv:1o1ew5v4CKmjjSy/rmmawIJTf2X59yyQxjJHCGz7kAA=,tag:bjMu2sOOwpI8uhlNNfi/Fw==,type:str]
+master_hostname: ENC[AES256_GCM,data:nEvVBAk4vDDG4+E=,iv:yc7sY0YlYT7+j99UGjtDWcn2tneocc5OMOFUn18lxRw=,tag:IUfW1th18VP8ORRQR6edAg==,type:str]
 sops:
     age:
-        - recipient: age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc
-          enc: |
+        - enc: |
             -----BEGIN AGE ENCRYPTED FILE-----
             YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLamJha2I4aEVubDZSaEx1
             NVlaeEJhVXlqQmlHSWgwZkJFdmxQcFFEeFQ0Ck1ROEhjZW10MWxFU0hYTmNheWpv
@@ -14,7 +14,8 @@ sops:
             ZUdJTWd0d08rYzFCbTVJRUpHZlZETVkK8lkvuaUvkqw+oiBDvPS3SDpV1G5/G+gy
             +laBSJdVHOO59esiZtEHLxg9Zu7zLgfIJsnOgTvvyprhFYgyPPVl3w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2026-08-30T18:53:47Z"
-    mac: ENC[AES256_GCM,data:i0IMLaqr6Es9zEonAfyj/JbIDJn8t9hVBvnBIFvWftoLqa3mMUHsIvdjHSx3IeaACvoNZPZVkakkm3YXj/gn6+vW3CP3BObbi/N5rR7tEW6sQnngSL/gyIdH37uHZAGluQ8uI08aMqz372hInXsrfifqcYe/ZFtKIWszvomzI0g=,iv:k3Bq3aL/gO2MLDveMq191yKgsqBUJ3LndykrT77v7NE=,tag:YwyVXIC/fz1Ymu4G4DgBBQ==,type:str]
+          recipient: age1nu7vf3mgwds705rpfnvzlr20zkphh0tga4hc06xs7nmrxwmnsyvsp8sxzc
+    lastmodified: "2026-09-27T11:54:44Z"
+    mac: ENC[AES256_GCM,data:nEXHxih5bd2VgyCxaSf+X97+yfjjXad9zP32WKSDcWio789f/3xyGjR5Dej5akGP+q1mHt+E85n/1DnqMljm2KjiSeitIRB8QcfnYgEb2bb2D9u8uJtsoCU5wMAFAt232l9wlkKB5o0gILg4ZvpwkSB89KneDM7ZnPVr9AGHemg=,iv:AD9vKuHwLeEeG2HrQYSS7KsLRkkd+2ZapibTY9QMCNc=,tag:gbxlEXRnzdBq43s08bukpw==,type:str]
     unencrypted_suffix: _unencrypted
-    version: 3.12.2
+    version: 3.13.3

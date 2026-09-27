@@ -1,0 +1,21 @@
+---
+- name: Setup Talos Linux Master Node
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    # - name: Generate secret
+    #   ansible.builtin.include_role:
+    #     name: talos
+    #     tasks_from: gen_secrets
+    - name: Generate master config
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: gen_master_config
+      vars: 
+        talos_install_disk: /dev/mmcblk0
+        talos_hostname: "{{ master_hostname }}"
+
+    # - name: Activate master node
+    #   ansible.builtin.include_role:
+    #     name: talos
+    #     tasks_from: activate_master
