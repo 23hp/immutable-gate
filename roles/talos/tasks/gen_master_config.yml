@@ -27,6 +27,7 @@
       --install-image {{ talos_installer_url }}
       --output-types controlplane,talosconfig
       --talos-version {{ talos_version }}
+      --with-cluster-discovery=false
       --with-examples=false
       --with-docs=false
       --with-secrets <(echo {{ lookup('ansible.builtin.file', role_path + '/files/secrets.sops.yaml') | community.sops.decrypt | quote }})
