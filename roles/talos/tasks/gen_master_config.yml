@@ -1,0 +1,43 @@
+---
+- name: Get Talos image url
+  ansible.builtin.include_tasks: get_image_urls.yml
+
+- name: Ensure talos config directory exists
+  ansible.builtin.file:
+    path: "{{ talos_config_path }}"
+    state: directory
+    mode: '0700'
+
+- name: Generate patches
+  ansible.builtin.template:
+    src: "patch-hostname.yaml.j2"
+    dest: "{{ talos_config_path }}/patch-hostname.yamL"
+    mode: "0600"
+
+- name: Generate Talos configs using in-memory secrets
+  ansible.builtin.shell:
+    cmd: >
+      talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
+      --additional-sans {{ talos_endpoint }}
+      --config-patch-control-plane @{{ role_path }}/files/patch-master-partition.yaml
+      --config-patch-control-plane @{{ role_path }}/files/patch-time-server.yaml
+      --config-patch-control-plane @patch-hostname.yamL
+      --force
+      --install-disk {{ talos_install_disk }}
+      --install-image {{ talos_installer_url }}
+      --output-types controlplane,talosconfig
+      --talos-version {{ talos_version }}
+      --with-examples=false
+      --with-docs=false
+      --with-secrets <(echo {{ lookup('ansible.builtin.file', role_path + '/files/secrets.sops.yaml') | community.sops.decrypt | quote }})
+    executable: /bin/bash
+    chdir: "{{ talos_config_path }}"
+  no_log: true
+
+- name: Update talosconfig
+  ansible.builtin.command: "{{ item }}"
+  loop:
+    - talosctl --talosconfig=talosconfig config endpoint {{ talos_endpoint }}
+    - talosctl config merge talosconfig
+  args:
+    chdir: "{{ talos_config_path }}"

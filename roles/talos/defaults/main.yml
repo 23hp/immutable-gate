@@ -1,6 +1,7 @@
 ---
 talos_cluster_name: "immutable-gate"
 talos_endpoint: "master.lan"
+talos_hostname: "talos"
 talos_install_disk: "/dev/mmcblk0"
 talos_config_path: "/tmp/talos"
 talos_patch_file: ""
