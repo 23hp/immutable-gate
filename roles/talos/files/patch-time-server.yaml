@@ -1,0 +1,7 @@
+apiVersion: v1alpha1
+kind: TimeSyncConfig
+ntp:
+  servers:
+    - time.lan
+    - time.google.com
+    - pool.ntp.org
