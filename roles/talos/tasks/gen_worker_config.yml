@@ -21,7 +21,6 @@
       --additional-sans {{ talos_endpoint }}
       --config-patch-worker @{{ role_path }}/files/patch-label-gpu.yaml
       --config-patch-worker @{{ role_path }}/files/patch-worker-partition.yaml
-      --config-patch-worker @{{ role_path }}/files/patch-time-server.yaml
       --config-patch-worker @patch-hostname.yamL
       --force
       --install-disk {{ talos_install_disk }}

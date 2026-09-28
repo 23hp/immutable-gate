@@ -20,7 +20,6 @@
       talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
       --additional-sans {{ talos_endpoint }}
       --config-patch-control-plane @{{ role_path }}/files/patch-master-partition.yaml
-      --config-patch-control-plane @{{ role_path }}/files/patch-time-server.yaml
       --config-patch-control-plane @patch-hostname.yamL
       --force
       --install-disk {{ talos_install_disk }}
