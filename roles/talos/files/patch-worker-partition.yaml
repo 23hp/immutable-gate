@@ -8,7 +8,7 @@ mount:
 ---
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: local-volume
+name: data
 provisioning:
   diskSelector:
     match: disk.transport == 'nvme'
