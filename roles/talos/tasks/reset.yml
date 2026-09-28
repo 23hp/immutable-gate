@@ -5,5 +5,5 @@
     --graceful=false \
     --wipe-mode system-disk \
     --system-labels-to-wipe STATE \
-    --system-labels-to-wipe EPHEMERAL
+    --system-labels-to-wipe EPHEMERAL \
     --reboot
