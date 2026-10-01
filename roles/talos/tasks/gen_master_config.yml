@@ -11,7 +11,7 @@
 - name: Generate patches
   ansible.builtin.template:
     src: "patch-hostname.yaml.j2"
-    dest: "{{ talos_config_path }}/patch-hostname.yamL"
+    dest: "{{ talos_config_path }}/patch-hostname.yaml"
     mode: "0600"
 
 - name: Generate Talos configs using in-memory secrets
@@ -20,7 +20,8 @@
       talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
       --additional-sans {{ talos_endpoint }}
       --config-patch-control-plane @{{ role_path }}/files/patch-master-partition.yaml
-      --config-patch-control-plane @patch-hostname.yamL
+      --config-patch-control-plane @{{ role_path }}/files/patch-cilium.yaml
+      --config-patch-control-plane @patch-hostname.yaml
       --force
       --install-disk {{ talos_install_disk }}
       --install-image {{ talos_installer_url }}

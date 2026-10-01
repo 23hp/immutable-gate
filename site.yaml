@@ -1,7 +1,7 @@
 # Build A new cluster
 ---
 - name: Install Talos
-  import_playbook: 03-os-activate.yml
+  import_playbook: 02-os-activate-master.yml
 
 # - name: Install Flux CD
 #   import_playbook: 04-fluxcd-install.yml

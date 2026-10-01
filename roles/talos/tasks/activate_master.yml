@@ -30,8 +30,14 @@
   delay: 15
 
 - name: Bootstrap Talos cluster
-  ansible.builtin.command: "{{ item }}"
-  loop:
-    - talosctl bootstrap -n {{ talos_endpoint }}
-    - talosctl health -n {{ talos_endpoint }} --wait-timeout 10m
-    - talosctl kubeconfig -n {{ talos_endpoint }}
+  ansible.builtin.command: talosctl bootstrap -n {{ talos_endpoint }}
+
+- name: Fetch kubeconfig
+  ansible.builtin.command: talosctl kubeconfig -n {{ talos_endpoint }}
+
+- name: Wait for Talos cluster health
+  ansible.builtin.command: talosctl health -n {{ talos_endpoint }} --wait-timeout 10m
+  register: health_result
+  until: health_result is succeeded
+  retries: 10
+  delay: 15

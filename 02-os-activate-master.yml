@@ -14,7 +14,7 @@
         tasks_from: gen_master_config
       vars: 
         talos_install_disk: /dev/mmcblk0
-        talos_hostname: "{{ master_hostname }}"
+        talos_hostname: "master.lan"
 
     - name: Activate master node
       ansible.builtin.include_role:
