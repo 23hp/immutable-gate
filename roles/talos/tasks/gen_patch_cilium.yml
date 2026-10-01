@@ -1,0 +1,26 @@
+---
+- name: Add Cilium helm repository
+  kubernetes.core.helm_repository:
+    name: cilium
+    repo_url: https://helm.cilium.io/
+
+- name: Render Cilium manifest (helm template)
+  kubernetes.core.helm_template:
+    chart_ref: cilium/cilium
+    chart_version: "1.20.2"
+    release_name: cilium
+    release_namespace: kube-system
+    values_files:
+      - "{{ role_path }}/files/cilium.values.yaml"
+  register: cilium_rendered
+
+- name: Write Cilium inline manifest patch
+  ansible.builtin.copy:
+    dest: "{{ talos_config_path }}/patch-master-cilium.yaml"
+    mode: "0600"
+    content: |
+      apiVersion: v1alpha1
+      kind: KubeInlineManifestConfig
+      name: cilium
+      manifest: |
+      {{ cilium_rendered.stdout | indent(2, true) }}
