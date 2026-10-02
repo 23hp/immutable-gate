@@ -30,3 +30,5 @@ gatewayAPI:
   enabled: true
   enableAlpn: true
   enableAppProtocol: true
+bgpControlPlane:
+  enabled: true

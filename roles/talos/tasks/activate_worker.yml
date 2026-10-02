@@ -12,7 +12,7 @@
   delay: 5
   changed_when: false
 
-- name: Apply Talos config to controlplane node
+- name: Apply Talos config to worker node
   ansible.builtin.command: |
     talosctl apply-config \
     --insecure \
