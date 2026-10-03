@@ -5,12 +5,11 @@
   vars:
     github_user: "23hp"
     github_repo: "immutable-gate-apps"
-    cluster_name: "local"
+    cluster_name: "lab"
     github_path: "clusters/{{ cluster_name }}"
     # github_pat: ""
     # init-config ConfigMap for FluxCD controllers
     # domain_name: "immutable-gate.com"
-    # acme_email: "admin@immutable-gate.com"
     # tailscale_domain_name: "immutable-gate.tailscale.net"
   tasks:
     - name: Create namespace
@@ -30,7 +29,6 @@
             namespace: flux-system
           data:
             domain_name: "{{ domain_name }}"
-            acme_email: "{{ acme_email }}"
             cluster_name: "{{ cluster_name }}"
             tailscale_domain_name: "{{ tailscale_domain_name }}"
 
@@ -54,6 +52,7 @@
         GITHUB_TOKEN: "{{ github_pat }}"
       ansible.builtin.command: |
         flux bootstrap github \
+          --components-extra=source-watcher \
           --owner={{ github_user }} \
           --repository={{ github_repo }} \
           --path={{ github_path }} \
