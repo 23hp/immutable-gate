@@ -33,6 +33,7 @@
             tailscale_domain_name: "{{ tailscale_domain_name }}"
 
     - name: Deploy AGE key for FluxCD
+      no_log: true
       kubernetes.core.k8s:
         definition:
           apiVersion: v1
