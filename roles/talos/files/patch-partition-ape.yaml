@@ -1,0 +1,15 @@
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: block15
+provisioning:
+  diskSelector:
+    match: disk.model == "CT480BX500SSD1"
+  minSize: 100GiB
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: snake
+provisioning:
+  diskSelector:
+    match: disk.wwid == "naa.5002538d41801d9d"
+  minSize: 100GiB
