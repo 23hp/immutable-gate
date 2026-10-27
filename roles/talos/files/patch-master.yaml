@@ -19,3 +19,24 @@ $patch: delete
 apiVersion: v1alpha1
 kind: KubeProxyConfig
 enabled: false
+---
+# less audit log
+apiVersion: v1alpha1
+kind: KubeAuditPolicyConfig
+configuration:
+  apiVersion: audit.k8s.io/v1
+  kind: Policy
+  omitStages:
+    - RequestReceived
+  rules:
+    - level: None
+      resources:
+        - group: coordination.k8s.io
+          resources: ["leases"]
+    - level: None
+      nonResourceURLs:
+        - /healthz*
+        - /livez*
+        - /readyz*
+        - /version
+    - level: Metadata
