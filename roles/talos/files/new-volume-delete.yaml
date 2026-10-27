@@ -1,4 +1,4 @@
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: hdd-4g
+name: block10
 $patch: delete
