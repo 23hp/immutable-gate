@@ -1,0 +1,11 @@
+customization:
+  extraKernelArgs:
+    # reduce noise in /var/log/machined.log 
+    - talos.dashboard.disabled=1
+  systemExtensions:
+    officialExtensions:
+      # intel CPU & iGPU
+      - siderolabs/i915
+      - siderolabs/intel-ucode
+      # network drive
+      - siderolabs/realtek-firmware
