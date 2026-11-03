@@ -14,8 +14,8 @@
 - name: Generate Talos configs using in-memory secrets
   ansible.builtin.shell:
     cmd: >
-      talosctl gen config {{ talos_cluster_name }} https://{{ talos_hostname }}:6443
-      --additional-sans {{ talos_hostname }}
+      talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
+      --additional-sans {{ talos_endpoint }}
       --config-patch-control-plane @patch-master-cilium.yaml
       --config-patch-control-plane @{{ role_path }}/files/patch-master.yaml
       --config-patch-control-plane @{{ role_path }}/files/patch-{{ talos_hostname }}.yaml
@@ -34,7 +34,7 @@
 - name: Update talosconfig
   ansible.builtin.command: "{{ item }}"
   loop:
-    - talosctl --talosconfig=talosconfig config endpoint {{ talos_hostname }}
+    - talosctl --talosconfig=talosconfig config endpoint {{ talos_endpoint }}
     - talosctl config merge talosconfig
   args:
     chdir: "{{ talos_config_path }}"
