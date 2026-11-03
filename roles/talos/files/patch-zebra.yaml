@@ -1,0 +1,37 @@
+apiVersion: v1alpha1
+kind: KernelModuleConfig
+name: drivetemp
+---
+apiVersion: v1alpha1
+kind: UnattendedInstallConfig
+provisioning:
+  diskSelector:
+    match: disk.serial == "0xc7bc16a1"
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: emmc
+provisioning:
+  diskSelector:
+    match: disk.serial == "0xc7bc16a1"
+  minSize: 10GB
+  grow: true
+---
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  maxSize: 30GB
+  diskSelector:
+    match: disk.model == 'Samsung SSD 850'
+mount:
+  disableAccessTime: true
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: ssd
+provisioning:
+  diskSelector:
+    match: disk.model == 'Samsung SSD 850'
+  minSize: 10GB
+  grow: true

@@ -1,0 +1,15 @@
+---
+- name: Setup Talos Linux Node
+  hosts: localhost
+  gather_facts: false
+  vars:
+    talos_cluster_name: lab
+    talos_hostname: zebra
+  tasks:
+    - name: Setup Talos master
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: "{{ item }}"
+      loop:
+        - gen_master_config
+        - activate_master

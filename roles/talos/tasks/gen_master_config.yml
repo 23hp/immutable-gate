@@ -8,26 +8,18 @@
     state: directory
     mode: '0700'
 
-- name: Generate patches
-  ansible.builtin.template:
-    src: "patch-hostname.yaml.j2"
-    dest: "{{ talos_config_path }}/patch-master-hostname.yaml"
-    mode: "0600"
-
 - name: Get Cilium patch 
   ansible.builtin.include_tasks: gen_patch_cilium.yml
 
 - name: Generate Talos configs using in-memory secrets
   ansible.builtin.shell:
     cmd: >
-      talosctl gen config {{ talos_cluster_name }} https://{{ talos_endpoint }}:6443
-      --additional-sans {{ talos_endpoint }}
-      --config-patch-control-plane @{{ role_path }}/files/patch-master-partition.yaml
-      --config-patch-control-plane @{{ role_path }}/files/patch-cilium.yaml
+      talosctl gen config {{ talos_cluster_name }} https://{{ talos_hostname }}:6443
+      --additional-sans {{ talos_hostname }}
       --config-patch-control-plane @patch-master-cilium.yaml
-      --config-patch-control-plane @patch-master-hostname.yaml
+      --config-patch-control-plane @{{ role_path }}/files/patch-master.yaml
+      --config-patch-control-plane @{{ role_path }}/files/patch-{{ talos_hostname }}.yaml
       --force
-      --install-disk {{ talos_install_disk }}
       --install-image {{ talos_installer_url }}
       --output-types controlplane,talosconfig
       --talos-version {{ talos_version }}
@@ -42,7 +34,7 @@
 - name: Update talosconfig
   ansible.builtin.command: "{{ item }}"
   loop:
-    - talosctl --talosconfig=talosconfig config endpoint {{ talos_endpoint }}
+    - talosctl --talosconfig=talosconfig config endpoint {{ talos_hostname }}
     - talosctl config merge talosconfig
   args:
     chdir: "{{ talos_config_path }}"
