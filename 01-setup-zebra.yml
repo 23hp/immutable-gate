@@ -4,6 +4,7 @@
   gather_facts: false
   vars:
     talos_cluster_name: lab
+    talos_endpoint: master
     talos_hostname: zebra
   tasks:
     - name: Setup Talos master

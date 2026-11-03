@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: false
   vars:
-    talos_endpoint: zebra
+    talos_endpoint: master
     talos_hostname: ape
   tasks:
     - name: Setup Talos worker
