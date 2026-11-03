@@ -5,7 +5,7 @@
     mode: '0700'
 
 - name: Wait for maintenance state
-  ansible.builtin.command: "talosctl get machinestatus --insecure -n {{ talos_node_ip }} -o jsonpath='{.spec.stage}'"
+  ansible.builtin.command: "talosctl get machinestatus --insecure -n {{ talos_hostname }} -o jsonpath='{.spec.stage}'"
   register: talos_machinestatus
   until: talos_machinestatus.stdout == "maintenance"
   retries: 20
@@ -17,6 +17,6 @@
     talosctl apply-config \
     --insecure \
     --file worker.yaml \
-    --nodes {{ talos_node_ip }}
+    --nodes {{ talos_hostname }}
   args:
     chdir: "{{ talos_config_path }}"

@@ -1,0 +1,33 @@
+apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: ape
+auto: off
+---
+apiVersion: v1alpha1
+kind: UnattendedInstallConfig
+provisioning:
+  diskSelector:
+    match: disk.transport == 'nvme'
+---
+apiVersion: v1alpha1
+kind: VolumeConfig
+name: EPHEMERAL
+provisioning:
+  maxSize: 100GB
+mount:
+  disableAccessTime: true
+---
+apiVersion: v1alpha1
+kind: UserVolumeConfig
+name: data
+provisioning:
+  diskSelector:
+    match: disk.transport == 'nvme'
+  minSize: 1T
+  maxSize: 2TB
+---
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+labels:
+    # needed by intel-device-plugins
+    intel.feature.node.kubernetes.io/gpu: true

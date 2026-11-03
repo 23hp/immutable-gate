@@ -1,9 +1,9 @@
 # Create a empty new volume on the node. 
 apiVersion: v1alpha1
 kind: UserVolumeConfig
-name: hdd-4g
+name: hdd
 provisioning:
   diskSelector:
-    match: disk.dev_path == '/dev/sda' # use "talosctl get disks" for the exact selector
+    match: disk.model == 'EXTERNAL_USB' # use "talosctl get disks" for the exact selector
   minSize: 3000GiB
   grow: true

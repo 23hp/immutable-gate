@@ -1,0 +1,15 @@
+---
+- name: Setup Talos Linux Node
+  hosts: localhost
+  gather_facts: false
+  vars:
+    talos_endpoint: zebra
+    talos_hostname: ape
+  tasks:
+    - name: Setup Talos worker
+      ansible.builtin.include_role:
+        name: talos
+        tasks_from: "{{ item }}"
+      loop:
+        - gen_worker_config
+        - activate_worker
