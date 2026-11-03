@@ -1,4 +1,9 @@
 apiVersion: v1alpha1
+kind: HostnameConfig
+hostname: zebra
+auto: off
+---
+apiVersion: v1alpha1
 kind: KernelModuleConfig
 name: drivetemp
 ---

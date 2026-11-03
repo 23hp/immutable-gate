@@ -11,5 +11,6 @@
         name: talos
         tasks_from: "{{ item }}"
       loop:
+        # - gen_secrets
         - gen_master_config
         - activate_master
