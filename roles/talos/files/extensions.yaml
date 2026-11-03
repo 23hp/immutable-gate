@@ -1,6 +1,0 @@
-customization:
-  systemExtensions:
-    officialExtensions:
-      # intel CPU & iGPU
-      - siderolabs/i915
-      - siderolabs/intel-ucode
