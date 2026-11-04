@@ -25,6 +25,8 @@ provisioning:
     match: disk.transport == 'nvme'
   minSize: 1T
   maxSize: 2TB
+mount:
+  disableAccessTime: true
 ---
 apiVersion: v1alpha1
 kind: KubeNodeConfig
