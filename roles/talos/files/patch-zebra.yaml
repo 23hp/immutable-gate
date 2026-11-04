@@ -40,3 +40,10 @@ provisioning:
     match: disk.model == 'Samsung SSD 850'
   minSize: 10GB
   grow: true
+---
+apiVersion: v1alpha1
+kind: ExistingVolumeConfig
+name: hdd
+discovery:
+  volumeSelector: # use "talosctl get discoveredvolumes" for the exact selector
+    match: volume.partition_label == "u-hdd-4g" 
