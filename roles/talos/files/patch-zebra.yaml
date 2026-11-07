@@ -53,3 +53,10 @@ discovery:
     match: volume.partition_label == "u-hdd-4g" 
 mount:
   disableAccessTime: true
+---
+# Enable workers on the control plane nodes
+apiVersion: v1alpha1
+kind: KubeNodeConfig
+taints:
+  node-role.kubernetes.io/control-plane:
+    $patch: delete
